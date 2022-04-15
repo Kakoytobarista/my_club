@@ -1,5 +1,5 @@
 # my_club
-![Workflow](https://github.com/Kakoytobarista/my_club/actions/workflows/my_club.yml/badge.svg)
+![example workflow](https://github.com/Kakoytobarista/my_club/actions/workflows/my_club.yml/badge.svg)
 ### How to run autotests:
 Mac:
 1. Installing brew:
