@@ -1,4 +1,4 @@
-name: Actions on my_club tests
+name: Autotests workflow
 
 on: push
 
