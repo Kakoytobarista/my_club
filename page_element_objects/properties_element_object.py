@@ -4,11 +4,11 @@ from page_element_objects.base_element_object import BaseElementObject
 
 class PropertiesElementObject(BaseElementObject):
     ELEMENT_XPATH = PropertiesEnum.PROPERTIES_XPATH.value
-    DISCOVERED_XPATH = PropertiesEnum.DISCOVER_XPATH.value
+    PROPERTY_XPATH = PropertiesEnum.PROPERTY_ENUM_XPATH.value
+    PROPERTY_VALUE_XPATH = PropertiesEnum.PROPERTY_VALUE_ENUM_XPATH.value
 
-    @property
-    def get_discovered(self):
-        return self.element.find_element_by_xpath(self.DISCOVERED_XPATH).text
+    def get_property_value(self, property_name):
+        return self._get_text(f"{self.PROPERTY_XPATH.format(property_name)}/{self.PROPERTY_VALUE_XPATH}")
 
-    def click_to_discovered(self):
-        self.element.find_element_by_xpath(self.DISCOVERED_XPATH).click()
+    def click_property(self, property_name):
+        self._click(self.PROPERTY_XPATH.format(property_name))

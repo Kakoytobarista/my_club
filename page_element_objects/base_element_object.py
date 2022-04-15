@@ -9,11 +9,22 @@ class BaseElementObject:
 
     def __init__(self, driver):
         self.driver = driver
-        self.element = driver.find_element_by_xpath(self.ELEMENT_XPATH)
+        self.element = driver.find_element(by=By.XPATH, value=self.ELEMENT_XPATH)
 
-    def click_(self, xpath):
-        # element = WebDriverWait(self.element, 20).until(
-        #     EC.presence_of_element_located((By.XPATH, xpath)))
-        # element.click()
-        self.element.find_element_by_xpath(xpath=xpath).click()
+    def _click(self, xpath):
+        """Method for clicking with WebDriverWait"""
+        try:
+            element = WebDriverWait(self.element, 20).until(
+                EC.presence_of_element_located((By.XPATH, xpath)))
+            element.click()
+        except NoSuchElementException as exception:
+            raise exception
 
+    def _get_text(self, xpath):
+        """Method for getting text with WebDriverWait"""
+        try:
+            element = WebDriverWait(self.element, 20).until(
+                EC.presence_of_element_located((By.XPATH, xpath)))
+            return element.text
+        except NoSuchElementException as exception:
+            raise exception

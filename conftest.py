@@ -1,6 +1,9 @@
+import os.path
+from datetime import datetime
+
 import pytest
 from selenium import webdriver
-from datetime import datetime
+from selenium.webdriver.chrome.options import Options
 
 
 def pytest_addoption(parser):
@@ -11,12 +14,15 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="function")
 def browser(request):
     browser_name = request.config.getoption("browser_name")
+    options = Options()
+    options.headless = True
+
     if browser_name == "chrome":
         print("\nStart chrome browser for test..")
-        browser = webdriver.Chrome()
+        browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
-        browser = webdriver.Firefox()
+        browser = webdriver.Firefox(options=options)
     else:
         raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser
@@ -34,12 +40,12 @@ def pytest_runtest_makereport(item):
     if report.when == 'call':
         feature_request = item.funcargs['request']
         driver = feature_request.getfixturevalue('browser')
-        # driver.save_screenshot('/home/aslan/gitProjects/Testing-infotecs/reports/' + timestamp + '.png')
-        #
-        # extra.append(pytest_html.extras.image('/home/aslan/gitProjects/Testing-infotecs/reports/'
-        #                                       + timestamp + '.png'))
+        path = os.path.abspath(__name__)
+        driver.save_screenshot(f'{path}/reports/' + timestamp + '.png')
 
-        # always add url to report
+        extra.append(pytest_html.extras.image(f'{path}/reports/'
+                                              + timestamp + '.png'))
+
         xfail = hasattr(report, 'wasxfail')
         if (report.skipped and xfail) or (report.failed and not xfail):
             # only add additional html on failure
