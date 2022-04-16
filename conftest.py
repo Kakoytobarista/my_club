@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser_name', action='store', default="chrome",
+    parser.addoption("--browser_name", action="store", default="chrome",
                      help="Choose browser: chrome or firefox")
 
 
@@ -18,8 +18,10 @@ def browser(request):
     options.headless = True
 
     if browser_name == "chrome":
+        path_chromedriver = os.path.abspath("config/chromedriver")
         print("\nStart chrome browser for test..")
-        browser = webdriver.Chrome(options=options)
+        browser = webdriver.Chrome(executable_path=path_chromedriver,
+                                   options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
         browser = webdriver.Firefox(options=options)
@@ -32,23 +34,18 @@ def browser(request):
 
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item):
-    timestamp = datetime.now().strftime('%H-%M-%S')
-    pytest_html = item.config.pluginmanager.getplugin('html')
+    timestamp = datetime.now().strftime("%H-%M-%S")
+    pytest_html = item.config.pluginmanager.getplugin("html")
     outcome = yield
     report = outcome.get_result()
-    extra = getattr(report, 'extra', [])
-    if report.when == 'call':
+    extra = getattr(report, "extra", [])
+    if report.when == "call":
         feature_request = item.funcargs['request']
-        driver = feature_request.getfixturevalue('browser')
-        path = os.path.abspath(__name__)
-        driver.save_screenshot(f'{path}/reports/' + timestamp + '.png')
-
-        extra.append(pytest_html.extras.image(f'{path}/reports/'
-                                              + timestamp + '.png'))
-
-        xfail = hasattr(report, 'wasxfail')
+        driver = feature_request.getfixturevalue("browser")
+        path = os.path.abspath("reports")
+        driver.save_screenshot(f"{path}/" + timestamp + ".png")
+        extra.append(pytest_html.extras.image(f"{path}/{timestamp}.png"))
+        xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
-            # only add additional html on failure
-            # extra.append(pytest_html.extras.image('/home/aslan/gitProjects/Testing-infotecs/reports/'))
-            extra.append(pytest_html.extras.html('<div>Additional HTML</div>'))
+            extra.append(pytest_html.extras.html("<div>Additional HTML</div>"))
         report.extra = extra
