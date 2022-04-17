@@ -20,9 +20,9 @@ def browser(request):
     options.headless = True
 
     if browser_name == "chrome":
-        path_chromedriver = os.path.abspath("./config/chromedriver")
+        path_chromedriver = os.path.abspath("chromedriver")
         print("\nStart chrome browser for test..")
-        service = Service(ChromeDriverManager(version="100.0.4896.20").install())
+        service = Service(executable_path=path_chromedriver)
         browser = webdriver.Chrome(service=service,
                                    options=options)
     elif browser_name == "firefox":
