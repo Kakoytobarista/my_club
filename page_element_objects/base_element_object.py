@@ -24,7 +24,7 @@ class BaseElementObject:
         """Method for getting text with WebDriverWait"""
         try:
             element = WebDriverWait(self.element, 20).until(
-                EC.presence_of_element_located((By.XPATH, xpath)))
+                EC.visibility_of_element_located((By.XPATH, xpath)))
             return element.text
         except NoSuchElementException as exception:
             raise exception
