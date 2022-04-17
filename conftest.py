@@ -1,4 +1,5 @@
 import os.path
+import sys
 from datetime import datetime
 
 import pytest
@@ -20,7 +21,11 @@ def browser(request):
     service = Service(os.path.abspath("chromedriver"))
     if browser_name == "chrome":
         print("\nStart chrome browser for test..")
-        browser = webdriver.Chrome(service=service, options=options)
+        if sys.platform == "darwin":
+            browser = webdriver.Chrome(options=options)
+        else:
+            browser = webdriver.Chrome(service=service,
+                                       options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
         browser = webdriver.Firefox(options=options)
