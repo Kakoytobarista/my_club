@@ -5,7 +5,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 def pytest_addoption(parser):
@@ -20,10 +19,9 @@ def browser(request):
     options.headless = True
 
     if browser_name == "chrome":
+        path_chromedriver = os.path.abspath("config/chromedriver")
         print("\nStart chrome browser for test..")
-        browser = webdriver.Chrome(service=Service(ChromeDriverManager(
-            version="100.0.4896.60"
-        ).install()),
+        browser = webdriver.Chrome(service=Service(executable_path=path_chromedriver),
                                    options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
