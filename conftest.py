@@ -4,6 +4,7 @@ from datetime import datetime
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -21,7 +22,7 @@ def browser(request):
     if browser_name == "chrome":
         path_chromedriver = os.path.abspath("chromedriver.exec")
         print("\nStart chrome browser for test..")
-        browser = webdriver.Chrome(ChromeDriverManager().install())
+        browser = webdriver.Chrome(Service(ChromeDriverManager().install()))
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
         browser = webdriver.Firefox(options=options)
