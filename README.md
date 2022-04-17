@@ -29,13 +29,16 @@ ChromeDriver 100.0.4896.60 (6a5d10861ce8de5fce22564658033b43cb7de047-refs/branch
 python3 -m venv venv
 source venv/bin/activate
 ```
-6. Installing dependencies:
+6. Go to my_club directory:
+```
+cd my_club
+```
+7. Installing dependencies:
 ```
 pip install -r requirements.txt (on my_club directory)
 ```
 7. Run autotests! :
 ```
- pytest -n 2 test_properties_page.py
+ pytest -n 2
 ```
 For check report open file report.html (in dir reports)
-Have fun!)
