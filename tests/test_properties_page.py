@@ -18,8 +18,8 @@ class TestProperties:
             ChemicalElementsEnum.ELEM_BTN.value.format(ChemicalElementsEnum.ELEM_NUMBER.value["Chlorine"]))
         properties = PropertiesElementObject(browser)
         chlorine_discovered_year = properties.get_property_value(PropertiesEnum.DISCOVERED_ID.value)
-        assert browser.current_url == PropertiesEnum.DISCOVERED_URL.value, \
-            ExceptionEnum.URL_WRONG_EXCEPTION.value
+        assert chlorine_discovered_year == ChemicalElementsEnum.CHLORINE_DISCOVERED_YEAR.value, \
+            ExceptionEnum.DISCOVERED_WRONG_EXCEPTION.value  # TODO '\' this symbol does not match PEP8
 
     def test_discovered_url_changed(self, browser):
         """Test for change url after click on chlorine element"""
