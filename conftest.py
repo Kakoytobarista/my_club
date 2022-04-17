@@ -20,7 +20,7 @@ def browser(request):
     options.headless = True
 
     if browser_name == "chrome":
-        path_chromedriver = os.path.abspath("chromedriver")
+        path_chromedriver = os.path.abspath("chromedriver.exec")
         print("\nStart chrome browser for test..")
         service = Service(executable_path=path_chromedriver)
         browser = webdriver.Chrome(service=service,
