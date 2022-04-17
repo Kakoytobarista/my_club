@@ -22,7 +22,7 @@ def browser(request):
     if browser_name == "chrome":
         path_chromedriver = os.path.abspath("chromedriver.exec")
         print("\nStart chrome browser for test..")
-        browser = webdriver.Chrome(ChromeDriverManager().install(),
+        browser = webdriver.Chrome(service=ChromeDriverManager().install(),
                                    options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
