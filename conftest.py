@@ -22,7 +22,7 @@ def browser(request):
     if browser_name == "chrome":
         print("\nStart chrome browser for test..")
         browser = webdriver.Chrome(service=Service(ChromeDriverManager(
-            latest_release_url="https://chromedriver.storage.googleapis.com/100.0.4896.60/chromedriver_mac64.zip"
+            version="100.0.4896.60"
         ).install()),
                                    options=options)
     elif browser_name == "firefox":
