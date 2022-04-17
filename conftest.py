@@ -18,10 +18,10 @@ def browser(request):
     browser_name = request.config.getoption("browser_name")
     options = Options()
     options.headless = True
-
+    service = Service(ChromeDriverManager().install())
     if browser_name == "chrome":
         print("\nStart chrome browser for test..")
-        browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        browser = webdriver.Chrome(service=service, options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
         browser = webdriver.Firefox(options=options)
