@@ -1,3 +1,5 @@
+from selenium import webdriver
+
 from enums.base_enum import BaseEnum
 from page_objects.base_page_object import BasePage
 
@@ -5,6 +7,7 @@ from page_objects.base_page_object import BasePage
 class PropertiesPageObject(BasePage):
     PROPERTIES_PAGE = f"{BaseEnum.BASE_URL.value}/{BaseEnum.PROPERTIES_PAGE_URL.value}"
 
-    def __init__(self, browser, url=PROPERTIES_PAGE):
+    def __init__(self, browser: webdriver,
+                 url: str = PROPERTIES_PAGE):
         super().__init__(browser, url)
         self.url = self.PROPERTIES_PAGE
