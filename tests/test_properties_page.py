@@ -1,5 +1,3 @@
-import logging
-
 from enums.chemical_elements_enum import ChemicalElementsEnum as Chemical
 from enums.exception_enum import ExceptionEnum as exception
 from enums.properties_enum import PropertiesEnum
