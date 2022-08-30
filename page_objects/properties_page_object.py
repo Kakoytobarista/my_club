@@ -1,7 +1,6 @@
-from selenium import webdriver
-
 from enums.base_enum import BaseEnum
 from page_objects.base_page_object import BasePage
+from selenium import webdriver
 
 
 class PropertiesPageObject(BasePage):
