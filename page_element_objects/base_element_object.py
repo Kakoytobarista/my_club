@@ -9,10 +9,10 @@ from selenium.webdriver.remote.webelement import WebElement
 class BaseElementObject:
     ELEMENT_XPATH = None
 
-    def __init__(self, driver):
-        self.driver: webdriver = driver
-        self.element: WebElement = driver.find_element(by=By.XPATH,
-                                                       value=self.ELEMENT_XPATH)
+    def __init__(self, browser):
+        self.driver: webdriver = browser
+        self.element: WebElement = browser.find_element(by=By.XPATH,
+                                                        value=self.ELEMENT_XPATH)
 
     def _click(self, xpath: str):
         """Method for clicking with WebDriverWait"""
