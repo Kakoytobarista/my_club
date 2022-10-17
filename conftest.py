@@ -5,6 +5,7 @@ from datetime import datetime
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
 
@@ -21,7 +22,7 @@ def browser(request):
     service = Service(os.path.abspath("config/chromedriver"))
     if browser_name == "chrome":
         if sys.platform == "darwin":
-            browser = webdriver.Chrome(service=service,
+            browser = webdriver.Chrome(ChromeDriverManager().install(),
                                        options=options)
         else:
             browser = webdriver.Chrome(service=service,
