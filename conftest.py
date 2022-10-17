@@ -19,13 +19,12 @@ def browser(request):
     options = Options()
     options.headless = True
     service = Service(os.path.abspath("config/chromedriver"))
-    path = os.path.abspath("config/chromedriver")
     if browser_name == "chrome":
         if sys.platform == "darwin":
             browser = webdriver.Chrome(service=service,
                                        options=options)
         else:
-            browser = webdriver.Chrome(executable_path=path,
+            browser = webdriver.Chrome(service=service,
                                        options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
