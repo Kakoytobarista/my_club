@@ -6,6 +6,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 def pytest_addoption(parser):
@@ -22,8 +23,9 @@ def browser(request):
     if browser_name == "chrome":
         print("\nStart chrome browser for test..")
         if sys.platform == "darwin":
-            browser = webdriver.Chrome(service=service,
-                                       options=options)
+            # browser = webdriver.Chrome(service=service,
+            #                            options=options)
+            browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         else:
             browser = webdriver.Chrome(service=service,
                                        options=options)
