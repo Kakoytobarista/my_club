@@ -26,8 +26,7 @@ def browser(request):
             browser = webdriver.Chrome(service=service,
                                        options=options)
         else:
-            browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
-                                       options=options)
+            browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
