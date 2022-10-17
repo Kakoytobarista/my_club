@@ -23,12 +23,15 @@ def browser(request):
     if browser_name == "chrome":
         print("\nStart chrome browser for test..")
         if sys.platform == "darwin":
-            # browser = webdriver.Chrome(service=service,
-            #                            options=options)
-            browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-        else:
             browser = webdriver.Chrome(service=service,
                                        options=options)
+            # browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
+            #                            options=options)
+        else:
+            browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
+                                       options=options)
+            # browser = webdriver.Chrome(service=service,
+            #                            options=options)
     elif browser_name == "firefox":
         print("\nStart firefox browser for test..")
         browser = webdriver.Firefox(options=options)
