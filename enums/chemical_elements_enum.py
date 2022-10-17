@@ -7,4 +7,4 @@ class ChemicalElementsEnum(enum.Enum):
     ELEM_NUMBER = {
         "Chlorine": 17,  # TODO: Update dict for all elements
     }
-    CHLORINE_DISCOVERED_YEAR = "1774"
+    CHLORINE_DISCOVERED_YEAR = "1774 AD"
